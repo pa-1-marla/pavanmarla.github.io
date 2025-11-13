@@ -1,81 +1,508 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pavan Marla | AI Portfolio</title>
+  <script src="/_sdk/element_sdk.js"></script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-    body { background-color: #f9fafc; color: #333; line-height: 1.6; }
-    header { background: #0f172a; color: #fff; padding: 30px 0; text-align: center; }
-    header h1 { font-size: 2rem; }
-    header p { font-size: 1.1rem; color: #cbd5e1; }
-    section { padding: 50px 15%; }
-    h2 { color: #0f172a; margin-bottom: 20px; }
-    .skills, .projects, .contact { margin-top: 40px; }
-    ul { list-style: none; }
-    li { background: #e2e8f0; margin: 8px 0; padding: 10px 15px; border-radius: 8px; }
-    .project-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
-    .project-card h3 { color: #0f172a; }
-    .contact a { color: #2563eb; text-decoration: none; font-weight: 500; }
-    footer { background: #0f172a; color: #cbd5e1; text-align: center; padding: 20px; margin-top: 30px; }
+    body {
+      box-sizing: border-box;
+    }
+    
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+      font-family: 'Poppins', sans-serif; 
+    }
+    
+    html {
+      height: 100%;
+    }
+    
+    body { 
+      background-color: #f9fafc; 
+      color: #333; 
+      line-height: 1.6; 
+    }
+    
+    header { 
+      position: relative;
+      width: 100%;
+      min-height: 500px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      color: #fff;
+      text-align: center;
+    }
+
+    .banner-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
+
+    .geometric-shapes {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+    }
+
+    .shape {
+      position: absolute;
+      opacity: 0.1;
+    }
+
+    .shape-1 {
+      top: 10%;
+      left: 10%;
+      width: 100px;
+      height: 100px;
+      background: white;
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .shape-2 {
+      top: 20%;
+      right: 15%;
+      width: 80px;
+      height: 80px;
+      background: white;
+      transform: rotate(45deg);
+      animation: float 8s ease-in-out infinite reverse;
+    }
+
+    .shape-3 {
+      bottom: 20%;
+      left: 20%;
+      width: 60px;
+      height: 60px;
+      background: white;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      animation: float 7s ease-in-out infinite;
+    }
+
+    .shape-4 {
+      bottom: 30%;
+      right: 10%;
+      width: 120px;
+      height: 120px;
+      background: white;
+      border-radius: 20px;
+      animation: float 9s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(10deg); }
+    }
+
+    .banner-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      color: white;
+      max-width: 800px;
+      padding: 40px 20px;
+    }
+
+    .banner-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.2;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .banner-subtitle {
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 20px;
+      opacity: 0.9;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      color: #cbd5e1;
+    }
+
+    .banner-description {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 32px;
+      opacity: 0.85;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #cbd5e1;
+    }
+
+    .banner-cta {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .banner-cta:hover {
+      background: rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .banner-cta:active {
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .banner-title {
+        font-size: 2.5rem;
+      }
+      
+      .banner-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .banner-description {
+        font-size: 1rem;
+      }
+      
+      .banner-content {
+        padding: 20px 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .banner-title {
+        font-size: 2rem;
+      }
+      
+      .banner-subtitle {
+        font-size: 1rem;
+      }
+      
+      .shape {
+        display: none;
+      }
+    }
+    
+    section { 
+      padding: 50px 15%; 
+    }
+    
+    .section-banner {
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      color: white;
+      padding: 30px 15%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .section-banner.about-banner {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    }
+    
+    .section-banner.skills-banner {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    }
+    
+    .section-banner.projects-banner {
+      background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    }
+    
+    .section-banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.1);
+      z-index: 1;
+    }
+    
+    .section-banner h2 {
+      position: relative;
+      z-index: 2;
+      color: white;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .section-banner .section-subtitle {
+      position: relative;
+      z-index: 2;
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-top: 10px;
+      font-weight: 300;
+    }
+    
+    .section-content {
+      padding: 40px 15%;
+      background: white;
+    }
+    
+    h2 { 
+      color: #0f172a; 
+      margin-bottom: 20px; 
+    }
+    
+    .skills, .projects, .contact { 
+      margin-top: 40px; 
+    }
+    
+    ul { 
+      list-style: none; 
+    }
+    
+    li { 
+      background: #e2e8f0; 
+      margin: 8px 0; 
+      padding: 10px 15px; 
+      border-radius: 8px; 
+    }
+    
+    .project-card { 
+      background: #fff; 
+      border: 1px solid #e5e7eb; 
+      border-radius: 10px; 
+      padding: 20px; 
+      margin-bottom: 20px; 
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05); 
+    }
+    
+    .project-card h3 { 
+      color: #0f172a; 
+    }
+    
+    .contact a { 
+      color: #2563eb; 
+      text-decoration: none; 
+      font-weight: 500; 
+    }
+    
+    footer { 
+      background: #0f172a; 
+      color: #cbd5e1; 
+      text-align: center; 
+      padding: 20px; 
+      margin-top: 30px; 
+    }
   </style>
-</head>
-<body>
-
-
-  <header>
-    <h1>Pavan Marla</h1>
-    <p>MSc in Artificial Intelligence | Data Science | Machine Learning | Natural Language Processing | Deep Learning | PySpark | MATLAB</p>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <header class="banner-container">
+   <div class="banner-overlay"></div>
+   <div class="geometric-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+   </div>
+   <div class="banner-content">
+    <h1 id="main-title" class="banner-title">Pavan Marla</h1>
+    <h2 id="subtitle" class="banner-subtitle">AI &amp; Machine Learning Specialist</h2>
+    <p id="banner-description" class="banner-description">MSc in Artificial Intelligence | Passionate about building intelligent systems using data-driven insights</p><a href="#about" id="cta-button" class="banner-cta">Explore My Work</a>
+   </div>
   </header>
-
-  <section id="about">
-    <h2>About Me</h2>
-    <p>Hello! I’m <b>Pavan Marla</b>, an MSc Artificial Intelligence student passionate about building intelligent systems using data-driven insights. 
-      My focus areas include Machine Learning, Deep Learning, and Fraud Detection in FinTech applications.</p>
-  </section>
-
-  <section class="skills">
-    <h2>Skills</h2>
-    <ul>
-      <li>Python</li>
-      <li>Machine Learning</li>
-      <li>Deep Learning</li>
-      <li>Data Science</li>
-      <li>PySpark</li>
-      <li>MATLAB</li>
-    </ul>
-  </section>
-
-  <section class="projects">
-    <h2>Projects</h2>
-
-    <div class="project-card">
-      <h3>AI-Based Real-Time Fraud Detection in Digital Payment System</h3>
-      <p>Developed a fraud detection model leveraging AI and ML algorithms to identify suspicious transactions in real-time digital payment environments.</p>
-    </div>
-
-    <div class="project-card">
-      <h3>Weblog Analysis</h3>
-      <p>Performed data mining and visualization on web traffic logs to understand user behavior and optimize web performance.</p>
-    </div>
-
-    <div class="project-card">
-      <h3>Credit Card Fraud Detection</h3>
-      <p>Implemented a machine learning model for identifying fraudulent credit card transactions using classification techniques.</p>
-    </div>
-  </section>
-
+  <div class="section-banner about-banner" id="about">
+   <h2>About Me</h2>
+   <p class="section-subtitle">Passionate AI Student &amp; Developer</p>
+  </div>
+  <div class="section-content">
+   <p>Hello! I'm <b>Pavan Marla</b>, an MSc Artificial Intelligence student passionate about building intelligent systems using data-driven insights. My focus areas include Machine Learning, Deep Learning, and Fraud Detection in FinTech applications.</p>
+  </div>
+  <div class="section-banner skills-banner">
+   <h2>Skills</h2>
+   <p class="section-subtitle">Technical Expertise &amp; Technologies</p>
+  </div>
+  <div class="section-content skills">
+   <ul>
+    <li>Python</li>
+    <li>Machine Learning</li>
+    <li>Deep Learning</li>
+    <li>Data Science</li>
+    <li>PySpark</li>
+    <li>MATLAB</li>
+   </ul>
+  </div>
+  <div class="section-banner projects-banner">
+   <h2>Projects</h2>
+   <p class="section-subtitle">Featured Work &amp; Achievements</p>
+  </div>
+  <div class="section-content projects">
+   <div class="project-card">
+    <h3>AI-Based Real-Time Fraud Detection in Digital Payment System</h3>
+    <p>Developed a fraud detection model leveraging AI and ML algorithms to identify suspicious transactions in real-time digital payment environments.</p>
+   </div>
+   <div class="project-card">
+    <h3>Weblog Analysis</h3>
+    <p>Performed data mining and visualization on web traffic logs to understand user behavior and optimize web performance.</p>
+   </div>
+   <div class="project-card">
+    <h3>Credit Card Fraud Detection</h3>
+    <p>Implemented a machine learning model for identifying fraudulent credit card transactions using classification techniques.</p>
+   </div>
+  </div>
   <section class="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:pavanmarla321@gmail.com">pavanmarla321@gmail.com</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/pavan-marla23" target="_blank">linkedin.com/in/pavan-marla23</a></p>
-    <p>GitHub: <a href="https://github.com/pavanmarla" target="_blank">github.com/pavanmarla</a></p>
+   <h2>Contact</h2>
+   <p>Email: <a href="mailto:pavanmarla321@gmail.com">pavanmarla321@gmail.com</a></p>
+   <p>LinkedIn: <a href="https://www.linkedin.com/in/pavan-marla23" target="_blank" rel="noopener noreferrer">linkedin.com/in/pavan-marla23</a></p>
+   <p>GitHub: <a href="https://github.com/pavanmarla" target="_blank" rel="noopener noreferrer">github.com/pavanmarla</a></p>
   </section>
-
   <footer>
-    <p>© 2025 Pavan Marla | 
+   <p>© 2025 Pavan Marla</p>
   </footer>
+  <script>
+    const defaultConfig = {
+      main_title: "Pavan Marla",
+      subtitle: "AI & Machine Learning Specialist",
+      banner_description: "MSc in Artificial Intelligence | Passionate about building intelligent systems using data-driven insights",
+      cta_text: "Explore My Work",
+      background_color: "#0f172a",
+      surface_color: "#334155",
+      text_color: "#ffffff",
+      button_color: "#ffffff",
+      accent_color: "#cbd5e1"
+    };
 
-</body>
+    async function onConfigChange(config) {
+      const mainTitle = config.main_title || defaultConfig.main_title;
+      const subtitle = config.subtitle || defaultConfig.subtitle;
+      const bannerDescription = config.banner_description || defaultConfig.banner_description;
+      const ctaText = config.cta_text || defaultConfig.cta_text;
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const buttonColor = config.button_color || defaultConfig.button_color;
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+
+      // Update text content
+      document.getElementById('main-title').textContent = mainTitle;
+      document.getElementById('subtitle').textContent = subtitle;
+      document.getElementById('banner-description').textContent = bannerDescription;
+      document.getElementById('cta-button').textContent = ctaText;
+
+      // Update colors
+      const bannerContainer = document.querySelector('header');
+      bannerContainer.style.background = `linear-gradient(135deg, ${backgroundColor} 0%, #1e293b 50%, ${surfaceColor} 100%)`;
+      
+      const bannerContent = document.querySelector('.banner-content');
+      bannerContent.style.color = textColor;
+      
+      const bannerSubtitle = document.getElementById('subtitle');
+      bannerSubtitle.style.color = accentColor;
+      
+      const bannerDesc = document.getElementById('banner-description');
+      bannerDesc.style.color = accentColor;
+      
+      const ctaButton = document.getElementById('cta-button');
+      ctaButton.style.color = buttonColor;
+      ctaButton.style.borderColor = `${buttonColor}40`;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.button_color || defaultConfig.button_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ button_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ accent_color: value });
+              }
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["main_title", config.main_title || defaultConfig.main_title],
+        ["subtitle", config.subtitle || defaultConfig.subtitle],
+        ["banner_description", config.banner_description || defaultConfig.banner_description],
+        ["cta_text", config.cta_text || defaultConfig.cta_text]
+      ]);
+    }
+
+    // Initialize the Element SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    // Handle CTA button click with smooth scrolling
+    document.getElementById('cta-button').addEventListener('click', function(e) {
+      e.preventDefault();
+      const aboutSection = document.querySelector('#about');
+      if (aboutSection) {
+        aboutSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99dec00fd33563a3',t:'MTc2MzA0MTk1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
